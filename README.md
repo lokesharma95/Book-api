@@ -1,10 +1,6 @@
 ### Prerequisite :
 
-1. download and install xampp with php version higher than 10
-
-```
-https://www.apachefriends.org/download.html
-```
+1. xxamp - <a href="https://www.apachefriends.org/download.html" target="_blank">https://www.apachefriends.org/download.html</a> 
 
 2. Download and install Mongodb with version higher than 5.0.1
 
