@@ -79,7 +79,7 @@ php artisan serve
 http://127.0.0.1:8080/api/books/
 ```
 
-11. for swagger api documentation
+12. for swagger api documentation
 
 ```
 http://localhost:8000/api/documentation
