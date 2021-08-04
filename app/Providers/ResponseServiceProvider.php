@@ -24,6 +24,7 @@ class ResponseServiceProvider extends ServiceProvider
      */
     public function boot(ResponseFactory $factory)
     {
+        // custom output format
         $factory->macro('api', function ($data,$success,$message) use ($factory) {
             
             $customFormat = [
