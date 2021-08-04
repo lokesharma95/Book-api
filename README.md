@@ -61,13 +61,19 @@ copy .env.example .env
 php artisan migrate
 ```
 
-9. Run php server using
+9. Run test cases using
+
+```
+.\vendor\bin\phpunit.bat
+```
+
+10. Run php server using
 
 ```
 php artisan serve
 ```
 
-10. Endpoints are
+11. Endpoints are
 
 ```
 http://127.0.0.1:8080/api/books/
