@@ -1,12 +1,3 @@
-<h2 align="center">Tech Alchemy Test</h2>
-<h4 align="center">Book-api</h4>
-
-## About The Project
-
-```
-It is the Book CRUD API test for tech alchemy
-```
-
 ### INSTALLATION :
 
 #### Install locally
