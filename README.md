@@ -1,4 +1,4 @@
-### Prerequisite :
+#### Prerequisite :
 
 1. download and install xampp with php version higher than 10
 
