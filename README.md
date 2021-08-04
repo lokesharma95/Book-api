@@ -12,6 +12,13 @@
 
 2. Postman - <a href="https://www.getpostman.com/collections/3e68f0f2144e9e431183" target="_blank">https://www.getpostman.com/collections/3e68f0f2144e9e431183</a> 
 
+## Unit Testing :
+
+Run test cases using
+
+```
+.\vendor\bin\phpunit.bat
+```
 
 ## INSTALLATION :
 
@@ -37,12 +44,6 @@ php artisan migrate
 
 ```
 php artisan serve
-```
-
-5. Run test cases using
-
-```
-.\vendor\bin\phpunit.bat
 ```
 
 
