@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Rules\Lowercase;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
@@ -25,7 +26,8 @@ class BookController extends Controller
                 return response()->api(BookResource::collection($books),false,'No record found')->setStatusCode(Response::HTTP_OK);
             }
             return response()->api(BookResource::collection($books),true,'Records found')->setStatusCode(Response::HTTP_OK);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
+            Log::channel('logError')->error("get-books : ". $exception);
             return response()->json(['error'=>'Internal server Error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -56,7 +58,8 @@ class BookController extends Controller
             }
             return response()->api(new BookResource($book),true,'Record created successfully')->setStatusCode(Response::HTTP_CREATED);
 
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
+            Log::channel('logError')->error("post-book : ". $exception);
             return response()->json(['error'=>'Internal server error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -76,7 +79,8 @@ class BookController extends Controller
             }
             return response()->api(new BookResource($book),true,'Record found')->setStatusCode(Response::HTTP_OK);
 
-        } catch (Exception $exception){
+        } catch (\Exception $exception){
+            Log::channel('logError')->error("show-book : ". $exception);
             return response()->json(['error'=>'Internal server error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         // return new BookResource(Book::find($id));
@@ -114,7 +118,8 @@ class BookController extends Controller
                 return response()->json(['error'=>'Update Failed','success'=>false], Response::HTTP_NOT_FOUND);
             }
             return response()->api(new BookResource($book),true,'Record updated successfully')->setStatusCode(Response::HTTP_OK);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
+            Log::channel('logError')->error("update-book : ". $exception);
             return response()->json(['error'=>'Internal server error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
@@ -137,7 +142,8 @@ class BookController extends Controller
                 return response()->json(['error'=>'Delete Failed','success'=>false], Response::HTTP_NOT_FOUND);
             }
             return response(['message' => 'Deleted successfully','success'=>true], Response::HTTP_OK);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
+            Log::channel('logError')->error("delete-book : ". $exception);
             return response()->json(['error'=>'Internal server error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('books', BookController::class);
+Route::apiResource('books', BookController::class)->middleware('logRoute');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
