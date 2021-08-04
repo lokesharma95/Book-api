@@ -27,40 +27,22 @@ git clone https://github.com/lokesharma95/Book-api.git
 composer install
 ```
 
-3. Copy .env.example file to .env on the root folder
-
-```
-copy .env.example .env
-```
-
-4. migrate database
+3. migrate database
 
 ```
 php artisan migrate
 ```
 
-5. Run php server using
+4. Run php server using
 
 ```
 php artisan serve
 ```
 
-6. Run test cases using
+5. Run test cases using
 
 ```
 .\vendor\bin\phpunit.bat
-```
-
-7. Endpoints are
-
-```
-http://127.0.0.1:8080/api/books/
-```
-
-8. for swagger api documentation
-
-```
-http://localhost:8000/api/documentation
 ```
 
 
