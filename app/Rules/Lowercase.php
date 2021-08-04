@@ -42,6 +42,6 @@ class Lowercase implements Rule
      */
     public function message()
     {
-        return 'The :attribute is already exist';
+        return 'The book :attribute already exist';
     }
 }

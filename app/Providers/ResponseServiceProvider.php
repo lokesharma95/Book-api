@@ -24,12 +24,13 @@ class ResponseServiceProvider extends ServiceProvider
      */
     public function boot(ResponseFactory $factory)
     {
-        // custom output format
+
+        // custom json output format
         $factory->macro('api', function ($data,$success,$message) use ($factory) {
             
             $customFormat = [
-                'message' => $message,
                 'success' => $success,
+                'message' => $message,
                 'data' => $data
             ];
             return $factory->make($customFormat);
