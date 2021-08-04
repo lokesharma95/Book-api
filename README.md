@@ -45,5 +45,6 @@ php artisan migrate
 ```
 php artisan serve
 ```
+![swagger-1](https://user-images.githubusercontent.com/73900102/128242860-d8389cf3-6d3e-4a15-ac84-6cf82d274af9.png)
 
 
