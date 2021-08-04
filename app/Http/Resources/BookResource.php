@@ -15,6 +15,7 @@ class BookResource extends JsonResource
      */
     public function toArray($request)
     {
+        // Outputting data in formatted data for user
         return [
             'uuid' => $this->id,
             'name' => ucwords($this->name),

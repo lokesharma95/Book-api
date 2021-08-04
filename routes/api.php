@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+// routing BookController and use middleware to log all request
 Route::apiResource('books', BookController::class)->middleware('logRoute');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

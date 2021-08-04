@@ -21,7 +21,9 @@ class BookController extends Controller
     public function index()
     {
         try{
+            // get all records
             $books = Book::all();
+            // check if records are empty
             if($books->isEmpty()){
                 return response()->api(BookResource::collection($books),false,'No record found')->setStatusCode(Response::HTTP_OK);
             }
@@ -41,6 +43,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         try {
+            // Validation
             $rules = array(
                 'name' => ['required','max:255','regex:/^[a-zA-Z0-9\s]+$/',new Lowercase],
                 'authorName' => 'required|regex:/^[a-zA-Z0-9\s]+$/',
@@ -49,10 +52,12 @@ class BookController extends Controller
             if($validator->fails()){
                 return response()->json(['error'=>$validator->errors(),'success'=>false],Response::HTTP_UNPROCESSABLE_ENTITY);
             }
+            // create record if validation passes
             $book = Book::create([
                 'name' => strtolower(trim($request->name, " ")),
                 'authorName' => trim($request->authorName, " "),
             ]);
+            // check if record created successfully
             if(!$book) {       
                 return response()->json(['error','Could not Create New Record','success'=>false], Response::HTTP_NOT_FOUND);
             }
@@ -73,7 +78,9 @@ class BookController extends Controller
     public function show($id)
     {
         try {
+            // check if record exist or provided uuid is valid or not
             $book = Book::find($id);
+            // check if record exist, if exist then return response
             if(!$book) {
                 return response()->json(['error'=>'Invalid uuid','success'=>false], Response::HTTP_NOT_FOUND);
             }
@@ -83,7 +90,6 @@ class BookController extends Controller
             Log::channel('logError')->error("show-book : ". $exception);
             return response()->json(['error'=>'Internal server error','success'=>false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-        // return new BookResource(Book::find($id));
     }
 
     /**
@@ -96,11 +102,12 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            // check if record exist or provided uuid is valid or not
             $book = Book::find($id);
             if(!$book) {
                 return response()->json(['error'=>'Invalid uuid','success'=>false], Response::HTTP_NOT_FOUND);
             }
-
+            // validation
             $rules = array(
                 'name' => ['required','max:255','regex:/^[a-zA-Z0-9\s]+$/',new Lowercase],
                 'authorName' => 'required|regex:/^[a-zA-Z0-9\s]+$/',
@@ -109,11 +116,12 @@ class BookController extends Controller
             if($validator->fails()){
                 return response()->json(['error'=>$validator->errors(),'success'=>false],Response::HTTP_UNPROCESSABLE_ENTITY);
             }
-
+            // update record if validation passed
             $book->update([
                 'name' => strtolower(trim($request->name, " ")),
                 'authorName' => trim($request->authorName, " "),
             ]);
+            // check if updation successfull
             if(!$book) {
                 return response()->json(['error'=>'Update Failed','success'=>false], Response::HTTP_NOT_FOUND);
             }
@@ -133,10 +141,12 @@ class BookController extends Controller
     public function destroy($id)
     {
         try {
+            // check if record exist or provided uuid is valid or not
             $book = Book::find($id);
             if(!$book) {
                 return response()->json(['error'=>'Invalid uuid','success'=>false], Response::HTTP_NOT_FOUND);
             }
+            // delete record if id is valid
             $deleteBook = $book->destroy($id);
             if(!$deleteBook) {
                 return response()->json(['error'=>'Delete Failed','success'=>false], Response::HTTP_NOT_FOUND);
